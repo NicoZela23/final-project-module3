@@ -120,10 +120,15 @@ public class Graph {
 
                 System.out.println(path);
                 System.out.println("The path costs: " + shortestPath.get(end));
-                System.out.printf(" The time it will take is: " + shortestPath.get(end) / 2 + " seconds");
+                System.out.printf(" The time it will take is: " + shortestPath.get(end) / 2.6 + " hours");
                 System.out.println();
 
-                return path + "\n\n\n\t The path costs: " + df.format(shortestPath.get(end)) + ", The time it will take is: " + df.format(shortestPath.get(end) / 2) + " seconds";
+                double totalTimeInHours = shortestPath.get(end)/3.2;
+                int hours = (int) totalTimeInHours;
+                int minutes = (int) ((totalTimeInHours - hours) * 60);
+                int seconds = (int) (((totalTimeInHours - hours) * 60 - minutes) * 60);
+
+                return path + "\n\n\n\t The approximate distance is: " + df.format(shortestPath.get(end) * 14.5) + " Km" + ", The time it will take is: " + hours + " hours, " + minutes + " minutes, " + seconds + " seconds";
             }
 
             currentNode.visit();
