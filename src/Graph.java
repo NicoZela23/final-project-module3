@@ -1,5 +1,3 @@
-package main;
-
 import java.util.*;
 import java.text.DecimalFormat;
 
@@ -8,7 +6,7 @@ public class Graph {
     private boolean directed;
     private static final DecimalFormat df = new DecimalFormat("0.00");
 
-    Graph(boolean directed) {
+    public Graph(boolean directed) {
         this.directed = directed;
         nodes = new HashSet<>();
     }

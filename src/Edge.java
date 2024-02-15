@@ -1,5 +1,3 @@
-package main;
-
 public class Edge implements Comparable<Edge>{
 
     Node source;

@@ -1,5 +1,3 @@
-package main;
-
 import java.util.LinkedList;
 
 public class Node {
@@ -8,7 +6,7 @@ public class Node {
     private boolean visited;
     LinkedList<Edge> edges;
 
-    Node(int id, String nameOfLocation){
+    public Node(int id, String nameOfLocation){
         this.id = id;
         this.name = nameOfLocation;
         visited = false;
