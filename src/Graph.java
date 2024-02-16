@@ -2,8 +2,8 @@ import java.util.*;
 import java.text.DecimalFormat;
 
 public class Graph {
-    private Set<Node> nodes;
-    private boolean directed;
+    private final Set<Node> nodes;
+    private final boolean directed;
     private static final DecimalFormat df = new DecimalFormat("0.00");
 
     public Graph(boolean directed) {
@@ -37,25 +37,6 @@ public class Graph {
         a.edges.add(new Edge(a, b, weight));
     }
 
-    public void printEdges() {
-        for (Node node : nodes) {
-            LinkedList<Edge> edges = node.edges;
-
-            if (edges.isEmpty()) {
-                System.out.println("Node: " + node.name + " has no edges");
-                continue;
-            }
-
-            System.out.println("Node: " + node.name + " has edges to: ");
-            for (Edge edge : edges) {
-                System.out.println(edge.destination.name + " with weight " + edge.weight);
-            }
-
-            System.out.println();
-        }
-
-    }
-
     public boolean hasEdge(Node source, Node destination) {
         LinkedList<Edge> edges = source.edges;
         for (Edge edge : edges) {
@@ -64,12 +45,6 @@ public class Graph {
             }
         }
         return false;
-    }
-
-    public void resetNodesVisited() {
-        for (Node node : nodes) {
-            node.unvisit();
-        }
     }
 
     public String shortestPath(Node start, Node end) {
@@ -105,7 +80,7 @@ public class Graph {
                 System.out.println("The path with the smallest weight between " + start.name + " and " + end.name + " is:");
 
                 Node child = end;
-                String path = end.name;
+                StringBuilder path = new StringBuilder(end.name);
 
                 while (true) {
                     Node parent = changedAt.get(child);
@@ -114,13 +89,13 @@ public class Graph {
                         break;
                     }
 
-                    path = parent.name + " -> " + path;
+                    path.insert(0, parent.name + " -> ");
                     child = parent;
                 }
 
                 System.out.println(path);
                 System.out.println("The path costs: " + shortestPath.get(end));
-                System.out.printf(" The time it will take is: " + shortestPath.get(end) / 2.6 + " hours");
+                System.out.println("The time it will take is: " + shortestPath.get(end) / 2.6 + " hours");
                 System.out.println();
 
                 double totalTimeInHours = shortestPath.get(end)/3.2;
@@ -128,7 +103,7 @@ public class Graph {
                 int minutes = (int) ((totalTimeInHours - hours) * 60);
                 int seconds = (int) (((totalTimeInHours - hours) * 60 - minutes) * 60);
 
-                return path + "\n\n\n\t The approximate distance is: " + df.format(shortestPath.get(end) * 14.5) + " Km" + ", The time it will take is: " + hours + " hours, " + minutes + " minutes, " + seconds + " seconds";
+                return path + "\nThe approximate distance is: " + df.format(shortestPath.get(end) * 14.5) + " Km. The time it will take is: " + hours + " hours, " + minutes + " minutes, " + seconds + " seconds";
             }
 
             currentNode.visit();
