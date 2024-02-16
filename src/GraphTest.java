@@ -20,6 +20,7 @@ public class GraphTest {
         directedGraph.addNode(nodeA, nodeB);
         directedGraph.addEdge(nodeA, nodeB, 5.0);
         Assertions.assertTrue(directedGraph.hasEdge(nodeA, nodeB));
+        Assertions.assertFalse(directedGraph.hasEdge(nodeB, nodeA));
     }
 
     @Test
@@ -47,6 +48,21 @@ public class GraphTest {
         String shortestPath = directedGraph.shortestPath(nodeA, nodeD);
         Assertions.assertNotNull(shortestPath);
         System.out.println(shortestPath);
+    }
+
+    @Test
+    public void testHasEdge() {
+        Node nodeA = new Node(1, "A");
+        Node nodeB = new Node(2, "B");
+        Node nodeC = new Node(3, "C");
+
+        directedGraph.addNode(nodeA, nodeB, nodeC);
+        directedGraph.addEdge(nodeA, nodeB, 5.0);
+        directedGraph.addEdge(nodeA, nodeC, 8.0);
+
+        Assertions.assertTrue(directedGraph.hasEdge(nodeA, nodeB));
+        Assertions.assertTrue(directedGraph.hasEdge(nodeA, nodeC));
+        Assertions.assertFalse(directedGraph.hasEdge(nodeB, nodeC));
     }
 }
 
