@@ -47,6 +47,10 @@
         <li><a href="#trace-route">Trace Route</a></li>
         <li><a href="#output">Output</a></li>
         <li><a href="#data-structures-applied">Data Structures applied</a></li>
+        <li><a href="#graph">Graph</a></li>
+        <li><a href="#node">Node</a></li>
+        <li><a href="#edge">Edge</a></li>
+        <li><a href="#routes-document">Routes Document</a></li>
         <li><a href="#Conclusions">Conclusions</a></li>
       </ul>
   </ol>
@@ -116,7 +120,73 @@ After selecting your origin and destination, a dedicated frame will present all 
 ## Data Structures applied
 The entire logic underpinning this project relies on weighted graphs, involving the utilization of Nodes, Edges, and the graph structure itself. We opted for a straightforward approach in implementing this project, harnessing the power of Java's libraries, including linked lists, Maps, and HashMaps. Extensive documentation and tutorials served as invaluable resources throughout the creation process.
 
+
 Our decision to employ the Dijkstra algorithm was twofold: first, for educational purposes, as it offers a rich learning experience; second, for its efficiency in providing optimal solutions for route calculations.
+
+**All the classes and methods will be specified**
+
+## Graph
+   The Graph class represents a graph data structure. It contains methods for managing nodes and edges, as well as finding the shortest path between nodes.
+
+**_Attributes_**
+
+`nodes`: A set containing all the nodes in the graph.
+
+`directed`: A boolean indicating whether the graph is directed or undirected.
+
+`df`: A DecimalFormat object for formatting decimal numbers.
+
+Constructor
+> Graph(boolean directed): Initializes a new graph with the specified directionality.
+
+**_Methods_**
+
+`addNode`(Node... n): Adds one or more nodes to the graph.
+
+`addEdge(Node source, Node destination, double weight)` Adds an edge between two nodes with the specified weight.
+
+`printEdges()` Prints the edges of each node in the graph.
+
+`hasEdge(Node source, Node destination)` Checks if there is an edge between two nodes.
+
+`resetNodesVisited()` Resets the visited status of all nodes in the graph.
+
+`shortestPath(Node start, Node end)` Finds the shortest path between two nodes using Dijkstra's algorithm.
+
+### Node
+   The Node class represents a node in the graph. Each node contains a list of edges connecting it to other nodes.
+
+**_Attributes_**
+
+`name` A string representing the name or identifier of the node.
+
+`edges` A linked list containing the edges connected to the node.
+
+`visited` A boolean indicating whether the node has been visited during traversal.
+
+Constructor
+>Node(String name): Initializes a new node with the specified name.
+
+**_Methods_**
+
+`visit()` Marks the node as visited.
+`unvisit()` Marks the node as unvisited.
+`isVisited()` Returns true if the node has been visited, false otherwise.
+### Edge
+   The Edge class represents an edge between two nodes in the graph.
+
+**_Attributes_**
+
+`source` The source node of the edge.
+
+`destination` The destination node of the edge.
+
+`weight` The weight of the edge.
+
+Constructor
+>Edge(Node source, Node destination, double weight): Initializes a new edge with the specified source, destination, and weight.
+### Routes Document
+If you want to see the document where all the routes where traced and managed the weight you access here <a href="https://docs.google.com/document/d/1VkbZLypJxjx1OGYmw8B20KnZOu4NPv3lK0Epu9MlLio/edit?usp=sharing"><strong>Routes Document</strong></a> 
 
 ### Conclusions
 Creating this project may have initially seemed straightforward in our minds, as we anticipated finding much of the necessary logic readily available on the internet. However, the reality proved to be quite different. We encountered numerous challenges along the way, including sifting through misleading information, grappling with flawed repositories, and conducting a plethora of tests, both individually and collaboratively as a team.
